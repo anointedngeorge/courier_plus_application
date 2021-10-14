@@ -107,3 +107,19 @@ class FormChoice(models.Model):
 
      def __str__(self) -> str:
         return f'{self.selector}'
+
+
+
+
+
+class SetPrinterDatabaseFields(models.Model):
+
+    database_name = models.CharField(max_length=100, choices=[], blank=True, null=True, default='')
+    database_fields = models.CharField(max_length=200, blank=True, null=True, choices=[])
+
+
+    class Meta:
+        verbose_name_plural = "Printout Fields"
+
+    def __str__(self) -> str:
+        return f'{self.database_name}'

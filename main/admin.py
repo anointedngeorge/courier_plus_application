@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import *
 
 
@@ -21,4 +20,9 @@ class FormChoiceAdmin(admin.ModelAdmin):
 
 @admin.register(EmailSettings)
 class EmailSettingsAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(SetPrinterDatabaseFields)
+class PrintoutParameterFields(admin.ModelAdmin):
     pass

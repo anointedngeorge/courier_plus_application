@@ -64,7 +64,20 @@ class Container(models.Model):
 
     def __str__(self) -> str:
         return f"{self.container_ref}"
+
     
+    
+    
+
+class DateTracker(models.Model):
+    registered_date = models.DateField(auto_now=False, auto_now_add=False, default=timezone.now)
+    # container = models.ForeignKey(Container, on_delete=models.CASCADE, blank=True, null=True)
+    
+    class Meta:
+        verbose_name_plural = "Track Date"
+
+    def __str__(self) -> str:
+        return f"{self.registered_date}"
 
 
 class ContainerDetails(models.Model):

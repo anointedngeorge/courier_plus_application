@@ -46,3 +46,18 @@ a{
 /* div#printout-area{
    
 } */
+
+
+@media print {
+    body * {
+      visibility: visible;
+    }
+    #printout-area {
+      visibility: visible;
+    }
+    #printout-area {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }

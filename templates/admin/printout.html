@@ -3,6 +3,10 @@
 
 {% block content %}
 
+<div class="link-content">
+    <button class="printout-button" onclick="printDiv('printout-area')"><i class="fa fa-print"></i> Click to Print</button>
+</div>
+   
 <div class="printout-area" id="printout-area">
     <table>
 
@@ -19,7 +23,12 @@
              <tr>
                 {% for i, key in result.items %}
                     {% if i in param_fields %}
-                        <td>{{key}}</td>
+                            
+                        {% if i == 'country' %}
+                            <td>{{key}}</td>
+                        {% else %}
+                            <td>{{key}}</td>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </tr>
@@ -32,4 +41,15 @@
 </div>
 
 {{block.super}}
+
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
 {% endblock content %}

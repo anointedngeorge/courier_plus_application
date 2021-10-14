@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin.sites import AdminSite
-from django.http import HttpRequest
+from django.http import HttpRequest, request
+from django.http.response import HttpResponse
 from django.urls import path
 from django.shortcuts import render
 from account.models import Profile
@@ -22,6 +23,7 @@ class courierUserDashboard(admin.AdminSite):
     site_title = "Courier Delivery Service"
     index_title = "Mobis & chennix"
     site_url = 'http://127.0.0.1:8000/'
+
 
 _dashboard =  courierUserDashboard(name='Mobis Chennix Inventory')
 
@@ -65,9 +67,10 @@ class ContainerAdminUser(admin.ModelAdmin):
 
     def printout(self, request):
         context = {}
-        excluded_fields = ['id','user_id', 'receivers_id', 'reason_for_arrival','package_type', 'assigned','updated']
+        excluded_fields = ['id','user_id', 'created', 'receivers_id', 'reason_for_arrival','package_type', 'assigned','updated']
         fields_container = []
         result_container = []
+        # 
         for fields in self.model._meta.fields:
             res = fields.get_attname_column()[0]
             fields_container.append(res)

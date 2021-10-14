@@ -1,9 +1,11 @@
 from django.contrib import admin
+# this is for containers
 from .models import *
 from datetime import date
 from django.urls import path
 from django.shortcuts import render
 import random
+from django.utils import timezone
 from django.core import serializers
 
 
@@ -13,6 +15,16 @@ class ContainerDetailsAdmin(admin.TabularInline):
     fields = ['items','size', 'quantity']
 
 
+@admin.register(DateTracker)
+class DateTrackerAdmin(admin.ModelAdmin):
+    model  = DateTracker
+    search_fields = ('registered_date_startwith',)
+    list_display = ['registered_date',]
+    fields = ['registered_date',]
+
+    def has_add_permission(self, request):
+        return False
+    
 
 @admin.register(Container)
 class ContainerAdmin(admin.ModelAdmin):
@@ -35,12 +47,12 @@ class ContainerAdmin(admin.ModelAdmin):
         return new_urls + urls
 
 
-
     def printout(self, request):
         context = {}
-        excluded_fields = ['id','user_id', 'receivers_id', 'reason_for_arrival','package_type','assigned','updated']
+        excluded_fields = ['id','user_id', 'created', 'receivers_id', 'reason_for_arrival','package_type', 'assigned','updated']
         fields_container = []
         result_container = []
+        # Get all tables attributes or field name
         for fields in self.model._meta.fields:
             res = fields.get_attname_column()[0]
             fields_container.append(res)
@@ -63,9 +75,15 @@ class ContainerAdmin(admin.ModelAdmin):
         tday = date.today()
         tracking_code = f"MC{obj.region}{tday.day}{tday.month}{tday.year}{randm}"
         obj.container_ref =  tracking_code
+        # save tracking date to 
+        # date_tracker = DateTracker.objects.all()
         super().save_model(request, obj, form, change)
+
+
 
 
 @admin.register(ContainerTracking)
 class ContainerTrackingAdmin(admin.ModelAdmin):
     pass
+
+

@@ -1,5 +1,3 @@
-# from .models import Profile, Referrals
-# from dashboard.models import Settlement
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver

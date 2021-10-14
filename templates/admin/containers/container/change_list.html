@@ -1,0 +1,30 @@
+{% extends 'admin/change_list.html' %}
+
+{% block content %}
+<div id="link-container">
+       <div class="link-content">
+                <a href="printout/" class="printout-button">
+                        <i class="fa fa-print"></i> Print
+                </a>
+       </div>
+
+      <div class="link-content">
+                <a href="printout/" class="printout-button">
+                        <i class="fa fa-file"></i> Generate CSV file
+                </a>
+       </div>
+
+       <div class="link-content">
+                <a href="printout/" class="printout-button">
+                        <i class="fa fa-upload"></i> Upload CSV file
+                </a>
+       </div>
+</div>
+
+{{ block.super }}
+<script> </script>
+{% endblock %}
+
+
+
+

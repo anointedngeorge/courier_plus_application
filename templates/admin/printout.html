@@ -1,0 +1,35 @@
+{% extends 'admin/base.html' %}
+
+
+{% block content %}
+
+<div class="printout-area" id="printout-area">
+    <table>
+
+        <thead>
+            {% for fields in param_fields %}
+                <th>{{fields}}</th>
+            {% endfor %}
+
+           
+        </thead>
+
+        <tbody>
+             {% for result in  printoutResults %}
+             <tr>
+                {% for i, key in result.items %}
+                    {% if i in param_fields %}
+                        <td>{{key}}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+
+    </table>
+   
+</div>
+
+{{block.super}}
+{% endblock content %}

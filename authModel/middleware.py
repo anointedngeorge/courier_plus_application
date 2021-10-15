@@ -21,4 +21,4 @@ class CheckUserSiteMiddleware(MiddlewareMixin):
                 #  return HttpResponseForbidden()
                 
          except Exception as e:
-             return e
+             pass

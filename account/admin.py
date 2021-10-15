@@ -19,7 +19,7 @@ class courierUserDashboard(admin.AdminSite):
     site_header = "Courier Dashboard"
     site_title = "Courier Delivery Service"
     index_title = "Mobis & chennix"
-    site_url = 'http://127.0.0.1:8000/'
+    # site_url = 
    
 
 _dashboard =  courierUserDashboard(name='Mobis Chennix Inventory')

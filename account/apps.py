@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from django.contrib.admin.apps import AdminConfig
 
 
 class AccountConfig(AppConfig):
@@ -8,3 +9,5 @@ class AccountConfig(AppConfig):
     
     def ready(self) -> None:
         import account.signals
+
+

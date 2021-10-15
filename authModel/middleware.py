@@ -12,13 +12,12 @@ class CheckUserSiteMiddleware(MiddlewareMixin):
          try:
              if user.is_authenticated and user.is_superuser:
                 return True
-             elif (user.is_authenticated) and not (user.is_superuser) and not (request.path.startswith('/admin/')):
+             elif (user.is_authenticated) and not (user.is_superuser) and not (request.path.startswith('/admin')):
                 pass
              elif not user.is_authenticated:
                 pass
              else:
-                 pass
-                #  return HttpResponseForbidden()
+                 return HttpResponseForbidden()
                 
          except Exception as e:
-             pass
+             return HttpResponse(e)

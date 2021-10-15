@@ -17,7 +17,8 @@ class CheckUserSiteMiddleware(MiddlewareMixin):
              elif not user.is_authenticated:
                 pass
              else:
-                 return HttpResponseForbidden()
+                 pass
+                #  return HttpResponseForbidden()
                 
          except Exception as e:
              return e

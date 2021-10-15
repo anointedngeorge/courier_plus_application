@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.admin.sites import AdminSite
+from django.contrib.admin.sites import AdminSite, site
 from django.http import HttpRequest, request
 from django.http.response import HttpResponse
 from django.urls import path
@@ -11,11 +11,8 @@ from django.utils import timezone
 from datetime import date
 import random
 from django.core import serializers
-
-
-
-
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.sites.shortcuts import get_current_site
 
 
 class courierUserDashboard(admin.AdminSite):
@@ -23,7 +20,7 @@ class courierUserDashboard(admin.AdminSite):
     site_title = "Courier Delivery Service"
     index_title = "Mobis & chennix"
     site_url = 'http://127.0.0.1:8000/'
-
+   
 
 _dashboard =  courierUserDashboard(name='Mobis Chennix Inventory')
 
@@ -45,7 +42,7 @@ class ContainerAdminUser(admin.ModelAdmin):
     ]
     exclude = ['created', 'updated','package_type', 'reason_for_arrival', 'container_ref', 'receivers','user']
     list_filter = ['container_ref', 'courier_company',]
-    list_editable = ['assigned', ]
+    
     inlines = [ContainerDetailsAdminUser]
 
 

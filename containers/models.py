@@ -56,7 +56,7 @@ class Container(models.Model):
     assigned  = models.BooleanField(default=0)
     
     updated  = models.DateTimeField(default=timezone.now)
-    created  = models.DateTimeField(default=timezone.now)
+    created  = models.DateField(default=timezone.now)
 
 
     class Meta:
@@ -86,7 +86,7 @@ class ContainerDetails(models.Model):
     size = models.IntegerField(default=0)
     quantity = models.IntegerField(default=0)
     updated  = models.DateTimeField(default=timezone.now)
-    created  = models.DateTimeField(default=timezone.now)
+    created  = models.DateField(default=timezone.now)
 
     class Meta:
         verbose_name_plural = "Container Details"

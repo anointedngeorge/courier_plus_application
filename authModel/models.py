@@ -7,6 +7,8 @@ from django.contrib.auth.models import (
     PermissionsMixin,
     BaseUserManager
 )
+
+from django.contrib.sites.models import Site
 # this is my defined custom extra py file, to fetch all the groups defined
 from authModel.extra import group_to_roles
 # Create your models here.
@@ -55,6 +57,7 @@ class AppAuthUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=300, unique=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    site = models.ForeignKey(Site, null=True, on_delete=models.CASCADE)
     roles = models.CharField(choices=ROLES, default='', max_length=300, null=True, blank=True)
     date_joined = models.DateField(auto_now_add=True)
 
@@ -66,6 +69,7 @@ class AppAuthUser(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         verbose_name_plural = "Authentication"
+    
     
 
     def __str__(self) -> str:
